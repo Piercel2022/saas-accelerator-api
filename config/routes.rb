@@ -1,16 +1,28 @@
 Rails.application.routes.draw do
-  devise_for :users
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :show, :update]
-      resources :organizations
-      resources :subscriptions
-      resources :billing_plans
+      devise_for :users, controllers: {
+        sessions: 'api/v1/users/sessions',
+        registrations: 'api/v1/users/registrations'
+      }
       
-      # Authentication routes
-      post 'auth/login', to: 'authentication#login'
-      delete 'auth/logout', to: 'authentication#logout'
-      post 'auth/refresh', to: 'authentication#refresh'
+      resources :organizations do
+        resources :users
+        resources :subscriptions
+      end
+      
+      resources :billing_plans do
+        resources :features
+      end
+      
+      resources :notifications
+      resources :activity_logs
+      
+      post 'auth/login', to: 'auth#login'
+      delete 'auth/logout', to: 'auth#logout'
+      post 'auth/refresh', to: 'auth#refresh_token'
     end
   end
+  
+  mount ActionCable.server => '/cable'
 end
