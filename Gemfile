@@ -52,3 +52,5 @@ gem "devise-jwt", "~> 0.12.1"
 gem "rack-cors", "~> 2.0"
 gem "redis", "~> 5.3"
 gem "sidekiq", "~> 7.3"
+
+gem "active_model_serializers", "~> 0.10.15"
