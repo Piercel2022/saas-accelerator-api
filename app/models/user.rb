@@ -12,9 +12,12 @@ class User < ApplicationRecord
   has_many :activity_logs
   has_one :user_preference
   
+  validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
   
   #has_secure_password
+  after_create :create_preferences
+  after_create :send_welcome_email
 
 end
