@@ -1,25 +1,30 @@
-class Api::V1::BaseController < ApplicationController
-    module Api
-        module V1
-          class BaseController < ApplicationController
-            include JWTAuthentication
-            
-            before_action :authenticate_request
-            
-            private
-            
-            def authenticate_request
-              header = request.headers['Authorization']
-              token = header.split(' ').last if header
-              
-              begin
-                decoded = JWT.decode(token, Rails.application.secrets.secret_key_base)
-                @current_user = User.find(decoded[0]['user_id'])
-              rescue JWT::DecodeError
-                render json: { error: 'Invalid token' }, status: :unauthorized
-              end
-            end
+module Api
+    module V1
+      class BaseController < ApplicationController
+        include ActionController::MimeResponds
+        
+        before_action :authenticate_request
+        
+        private
+        
+        def authenticate_request
+          header = request.headers['Authorization']
+          token = header.split(' ').last if header
+          begin
+            @decoded = JsonWebToken.decode(token)
+            @current_user = User.find(@decoded[:user_id])
+          rescue ActiveRecord::RecordNotFound, JWT::DecodeError => e
+            render json: { error: 'Unauthorized' }, status: :unauthorized
           end
         end
+        
+        def current_user
+          @current_user
+        end
+        
+        def render_error(message, status = :unprocessable_entity)
+          render json: { error: message }, status: status
+        end
       end
-end
+    end
+  end
