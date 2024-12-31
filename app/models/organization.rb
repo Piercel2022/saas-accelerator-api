@@ -11,7 +11,14 @@ class Organization < ApplicationRecord
     validates :subdomain, presence: true, uniqueness: true
   
     after_commit :broadcast_member_update, on: [:update]
-  
+    after_create :setup_default_roles
+    after_create :create_owner_team
+
+    def setup_default_roles
+      %w[owner admin member viewer].each do |role|
+        roles.create(name: role)
+      end
+    end
     private
   
     def broadcast_member_update
