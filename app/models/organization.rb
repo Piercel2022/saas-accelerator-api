@@ -1,8 +1,11 @@
 class Organization < ApplicationRecord
-    include Broadcastable
+    #include Broadcastable
     
     has_many :users
     has_many :subscriptions
+    has_many :usage_metrics
+    has_many :activity_logs
+    has_many :teams
     
     validates :name, presence: true
     validates :subdomain, presence: true, uniqueness: true

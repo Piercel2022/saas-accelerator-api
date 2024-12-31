@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_203019) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_31_025450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -107,8 +107,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_203019) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "organization_id", null: false
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -119,4 +122,5 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_203019) do
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "billing_plans"
   add_foreign_key "subscriptions", "organizations"
+  add_foreign_key "users", "organizations"
 end

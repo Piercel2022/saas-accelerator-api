@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  include Broadcastable
+  #include Broadcastable
   
   belongs_to :organization
   belongs_to :billing_plan
