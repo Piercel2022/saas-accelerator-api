@@ -52,7 +52,7 @@ end
 
 
 
-gem "devise-jwt", "~> 0.12.1"
+gem "devise-jwt"
 gem "redis", "~> 5.3"
 gem "sidekiq", "~> 7.3"
 

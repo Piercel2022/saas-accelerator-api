@@ -373,7 +373,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
-  devise-jwt (~> 0.12.1)
+  devise-jwt
   factory_bot_rails
   faker
   kamal

@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
@@ -59,5 +61,5 @@ Rails.application.routes.draw do
   end
   
   mount ActionCable.server => '/cable'
-  mount Sidekiq::Web => '/sidekiq'
+  # mount Sidekiq::Web => '/sidekiq'
 end
