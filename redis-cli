@@ -1,0 +1,40 @@
+
+Utilisationÿ: ping [-t] [-a] [-n count] [-l size] [-f] [-i TTL] [-v TOS]
+            [-r count] [-s count] [[-j host-list] | [-k host-list]]
+            [-w timeout] [-R] [-S srcaddr] [-c compartment] [-p]
+            [-4] [-6] nom_cible
+
+Optionsÿ:
+    -t             Effectue un test ping sur l'h“te sp‚cifi‚ jusqu'… son arrˆt.
+                   Pour afficher les statistiques et continuer,
+                   appuyez sur Ctrl+Attn.
+                   Pour arrˆter, appuyez sur Ctrl+C.
+    -a             R‚sout les adresses en noms d'h“tes.
+    -n count       Nombre de demandes d'‚cho … envoyer.
+    -l size        Taille du tampon d'envoi.
+    -f             Active l'indicateur Ne pas fragmenter dans le paquet (IPv4
+                   uniquement).
+    -i TTL         Dur‚e de vie.
+    -v TOS         Type de service (IPv4 uniquement. La
+                   configuration de ce paramŠtre n'a aucun effet sur le type
+                   de service dans l'en-tˆte IP).
+    -r count       Itin‚raire d'enregistrement du nombre de sauts (IPv4
+                   uniquement).
+    -s count       Horodatage du nombre de sauts (IPv4 uniquement).
+    -j host-list   Itin‚raire source libre parmi la liste d'h“tes (IPv4
+                   uniquement).
+    -k host-list   Itin‚raire source strict parmi la liste d'h“tes (IPv4
+                   uniquement).
+    -w timeout     D‚lai d'attente pour chaque r‚ponse, en millisecondes.
+    -R             Utilise l'en-tˆte de routage pour tester ‚galement
+                   l'itin‚raire inverse (IPv6 uniquement).
+                   D'aprŠs la RFCÿ5095, l'utilisation de cet en-tˆte de routage
+                   est d‚conseill‚e. Certains systŠmes peuvent supprimer des
+                   demandes d'‚cho si cet en-tˆte est utilis‚.
+    -S srcaddr     Adresse source … utiliser.
+    -c compartment Identificateur de compartiment de routage.
+    -p             Effectue un test ping sur l'adresse de fournisseur
+                   de la virtualisation r‚seau Hyper-V.
+    -4             Force l'utilisation d'IPv4.
+    -6             Force l'utilisation d'IPv6.
+
