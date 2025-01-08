@@ -5,21 +5,15 @@ module Api
       before_action :authorize_organization_access, except: [:profile, :update_profile]
       
       def index
-        @users = current_user.organization.users
-                            .includes(:organization)
-                            .order(created_at: :desc)
-                            .page(params[:page])
-                            .per(20)
+        @users = current_user.organization.users.includes(:organization).order(created_at: :desc).page(params[:page]).per(20)
         
         render json: @users,
-               each_serializer: UserSerializer,
-               meta: pagination_meta(@users)
+        each_serializer: UserSerializer,
+        meta: pagination_meta(@users)
       end
       
       def show
-        render json: @user,
-               serializer: UserSerializer,
-               include: ['organization']
+        render json: @user, serializer: UserSerializer, include: ['organization']
       end
       
       def create
@@ -28,9 +22,7 @@ module Api
         
         if @user.save
           UserMailer.welcome(@user).deliver_later
-          render json: @user,
-                 serializer: UserSerializer,
-                 status: :created
+          render json: @user, serializer: UserSerializer, status: :created
         else
           render_error @user.errors.full_messages
         end
