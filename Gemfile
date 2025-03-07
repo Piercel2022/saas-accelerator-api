@@ -54,6 +54,6 @@ end
 
 gem "devise-jwt"
 gem "redis", "~> 5.3"
-gem "sidekiq", "~> 7.3"
+gem "sidekiq", "~> 8.0"
 
 gem "active_model_serializers", "~> 0.10.15"
